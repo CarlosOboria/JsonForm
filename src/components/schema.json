@@ -1,0 +1,53 @@
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "responsable": {
+      "type": "boolean"
+    },
+    "irresponsable": {
+      "type": "boolean"
+    },
+    "fecha": {
+      "type": "string",
+      "format": "date"
+    },
+    "fileData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "integer"
+        },
+        "departamento": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true,
+      "required": ["name"]
+    },
+   
+    "estado": {
+      "type": "string",
+      "enum": ["Inbox", "OutBox", "Finiquitao", "Pa´quemar"]
+    },
+
+    "registro": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Cambios": {
+            "type": "string"
+          },
+          "Comentarios": {
+            "type": "string"}
+        }}}
+  },
+  "additionalProperties": true,
+  "required": ["name", "fileData"]
+}

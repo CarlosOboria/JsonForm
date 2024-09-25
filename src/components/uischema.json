@@ -1,0 +1,67 @@
+{
+  "type": "VerticalLayout",
+  "elements": [
+    {
+      "type": "Control",
+      "scope": "#/properties/name"
+    },
+    {
+      "type": "HorizontalLayout",
+      "elements": [
+       
+      
+        {
+          "type": "Control",
+          "label": "Responsable",
+          "scope": "#/properties/responsable",
+          "rule": {
+            "effect": "HIDE",
+            "condition": {
+              "scope": "#/properties/responsable",
+              "schema": { "const": false }
+            }
+          }
+        },
+        {
+          "type": "Control",
+          "label": "¡Irresponsable! ¡Imprudente! ¡Inconsciente! ¡INSENSATOOO!",
+          "scope": "#/properties/irresponsable",
+          "rule": {
+            "effect": "HIDE",
+            "condition": {
+              "scope": "#/properties/responsable",
+              "schema": { "const": true }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "Control",
+      "scope": "#/properties/fecha"
+    },
+    {
+      "type": "Control",
+      "scope": "#/properties/fileData"
+    },
+    {
+      "type": "Control",
+      "label": "Estado del  documento",
+      "scope": "#/properties/estado"
+    },
+    {
+      "type": "VerticalLayout",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/registro",
+          "options": {
+            "showSortButtons": true
+          }
+        }
+      ]
+    }
+  ]
+ 
+}
+
