@@ -7,6 +7,7 @@ import {
   materialRenderers,
 } from "@jsonforms/material-renderers";
 import Button from "@mui/material/Button";
+import axios from "axios";
 
 const initialData = {
   name: "Mr/Mrs Oboria",
@@ -19,19 +20,34 @@ const initialData = {
 export const JsonFormsProb = () => {
   const [data, setData] = useState(initialData);
   const jsonData =useMemo(()=>JSON.stringify(data, null, 2),[data]) ;
-  const [jsonUrl, setJsonUrl] = useState('');
   
-  const handleSubmit = () => {  
-    console.log(jsonData);
-     // Crear una data URL para el JSON
-     const dataBlob = new Blob([jsonData], { type: 'application/json' });
-     const url = URL.createObjectURL(dataBlob);
- 
-     setJsonUrl(url);  // Guardar la URL generada
-     console.log(url)
-     window.open(url, '_blank');
+  
+  const handleSubmit = () => {
+    // #BlobRegion
+    const dataBlob = new Blob([jsonData], { type: 'application/json' });
+    const url = URL.createObjectURL(dataBlob);
+    setData(url);  // Guardar la URL generada
+    console.log(url)
+    window.open(url, '_blank');
+    // #endRegion
+    const urlPower= 'https://prod-93.westeurope.logic.azure.com:443/workflows/82828cccadf346ef9f870a0cc40cca1f/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=AMDsphYZcS3quqkcVzaub3Y6hzJZylJumA4dfUHFVrA';
     
-    setData({})
+    axios.post (urlPower,jsonData )
+    .then(response => {
+      setData(response.jsonData);
+      console.log(response.jsonData);  // Ver la respuesta en consola
+  })
+  .catch(error => {
+      console.error('Error:', error);
+  });
+  return (
+    <div>
+        <button >Hacer POST</button>
+       {jsonData && <div>Respuesta: {JSON.stringify(jsonData)} </div>}
+    </div>
+    
+);
+
   };
 
   return (
@@ -51,9 +67,10 @@ export const JsonFormsProb = () => {
         onClick={handleSubmit}
         color="primary"
         variant="contained"  
-        sx={{ marginRight: 3 }}   >
+        sx={{ marginRight: 3 }}  >
         Salvameeeeh!!
       </Button>
+      {jsonData && <div>Respuesta: {JSON.stringify(jsonData)} </div>}
 
       <Button onClick={() => setData({})} color="secondary" variant="contained">
         Clear form data
@@ -62,4 +79,11 @@ export const JsonFormsProb = () => {
       </>
   );
 };
+
 export default JsonForms;
+
+/* Blob:   const dataBlob = new Blob([jsonData], { type: 'application/json' });
+const url = URL.createObjectURL(dataBlob);
+setJsonUrl(url);  // Guardar la URL generada
+console.log(url)
+window.open(url, '_blank'); */
