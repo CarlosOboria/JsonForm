@@ -29,6 +29,7 @@ export const JsonFormsProb = () => {
  
      setJsonUrl(url);  // Guardar la URL generada
      console.log(url)
+     window.open(url, '_blank');
     
     setData({})
   };
