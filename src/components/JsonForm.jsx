@@ -1,6 +1,6 @@
 import schema from "./schema.json";
 import uischema from "./uischema.json";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { JsonForms } from "@jsonforms/react";
 import {
   materialCells,
@@ -11,20 +11,30 @@ import Button from "@mui/material/Button";
 const initialData = {
   name: "Mr/Mrs Oboria",
   responsable: true,
-  irresponsable: true,
+  irresponsable: false,
   fecha:new Date().toISOString().split('T')[0],
 };
 
 
 export const JsonFormsProb = () => {
   const [data, setData] = useState(initialData);
-
-  const handleSubmit = () => {
-    const jsonData = JSON.stringify(data, null, 2);
-    console.log('Datos del formulario en JSON:', jsonData);
+  const jsonData =useMemo(()=>JSON.stringify(data, null, 2),[data]) ;
+  const [jsonUrl, setJsonUrl] = useState('');
+  
+  const handleSubmit = () => {  
+    console.log(jsonData);
+     // Crear una data URL para el JSON
+     const dataBlob = new Blob([jsonData], { type: 'application/json' });
+     const url = URL.createObjectURL(dataBlob);
+ 
+     setJsonUrl(url);  // Guardar la URL generada
+     console.log(url)
+    
+    setData({})
   };
 
   return (
+    <>
     <div>
       <JsonForms
         schema={schema}
@@ -34,19 +44,21 @@ export const JsonFormsProb = () => {
         cells={materialCells}
         onChange={({ data }) => setData(data)}
       />
+      </div>
+      <div>
       <Button
         onClick={handleSubmit}
         color="primary"
-        variant="contained"
-        data-testid="clear-data"
-      >
+        variant="contained"  
+        sx={{ marginRight: 3 }}   >
         Salvameeeeh!!
       </Button>
 
-      <Button onClick={() => setData({})} color="primary">
+      <Button onClick={() => setData({})} color="secondary" variant="contained">
         Clear form data
       </Button>
-    </div>
+      </div>
+      </>
   );
 };
 export default JsonForms;

@@ -15,9 +15,9 @@
           "label": "Responsable",
           "scope": "#/properties/responsable",
           "rule": {
-            "effect": "HIDE",
+            "effect": "SHOW",
             "condition": {
-              "scope": "#/properties/responsable",
+              "scope": "#/properties/irresponsable",
               "schema": { "const": false }
             }
           }
