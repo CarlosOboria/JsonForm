@@ -1,63 +1,110 @@
 {
-  "type": "VerticalLayout",
+  "type": "Categorization",
   "elements": [
     {
-      "type": "Control",
-      "scope": "#/properties/name"
+      "type": "Category",
+      "label": "Datos",
+      "elements": [
+        { "type": "Control", "scope": "#/properties/emilio" },
+        {
+          "type": "VerticalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/id"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/version"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/departamento"
+            }
+          ]
+        }
+      ]
     },
     {
-      "type": "HorizontalLayout",
+      "type": "Category",
+      "label": "Registro",
+      "i18n": "registro",
       "elements": [
-       
-      
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/registro/properties/cambio"
+            },
+            {
+              "type": "VerticalLayout",
+              "elements": [
+                {
+                  "type": "Control",
+                  "label": "¿Incidencias?",
+                  "scope": "#/properties/registro/properties/afectaaotros"
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/responsable"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "VerticalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/registro/properties/comentario"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/registro/properties/incidencia",
+              "rule": {
+                "effect": "SHOW",
+                "condition": {
+                  "scope": "#/properties/registro/properties/afectaaotros",
+                  "schema": {
+                    "const": true
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Category",
+      "label": "Jefe de equipo",
+      "i18n": "fuckingBoss",
+      "elements": [
         {
           "type": "Control",
-          "label": "Responsable",
-          "scope": "#/properties/responsable",
-          "rule": {
-            "effect": "SHOW",
-            "condition": {
-              "scope": "#/properties/irresponsable",
-              "schema": { "const": false }
-            }
-          }
+          "scope": "#/properties/jefedeequipo/properties/urgencia"
         },
         {
           "type": "Control",
-          "label": "¡Irresponsable! ¡Imprudente! ¡Inconsciente! ¡INSENSATOOO!",
-          "scope": "#/properties/irresponsable",
-          "rule": {
-            "effect": "HIDE",
-            "condition": {
-              "scope": "#/properties/responsable",
-              "schema": { "const": true }
-            }
-          }
-        }
-      ]
-    },
-    {
-      "type": "Control",
-      "scope": "#/properties/fileData"
-    },
-    {
-      "type": "Control",
-      "label": "Estado del  documento",
-      "scope": "#/properties/estado"
-    },
-    {
-      "type": "VerticalLayout",
-      "elements": [
+          "scope": "#/properties/jefedeequipo/properties/otrosequipos"
+        },
         {
           "type": "Control",
-          "scope": "#/properties/registro",
-          "options": {
-            "showSortButtons": true
+          "scope": "#/properties/jefedeequipo/properties/informar"
+          
+        }
+      ],
+      "rule": {
+        "effect": "SHOW",
+        "condition": {
+          "scope": "#/properties/responsable",
+          "schema": {
+            "const": true
           }
         }
-      ]
+      }
     }
   ]
- 
 }
-

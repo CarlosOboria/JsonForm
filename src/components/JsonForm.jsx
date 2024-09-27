@@ -11,7 +11,7 @@ import axios from "axios";
 
 const initialData = {
   name: "Mr/Mrs Oboria",
-  responsable: true,
+  responsable: false,
   irresponsable: false,
   fecha: new Date().toISOString().split("T")[0],
 };

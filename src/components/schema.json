@@ -1,50 +1,70 @@
 {
   "type": "object",
   "properties": {
-    "name": {
-      "type": "string"
+    "emilio": {
+      "type": "string",
+      "placeHolder": "Indica tu email",
+      "minLength": 6,
+      "description": "Please enter your email"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 3,
+      "description": "Please enter ID´s file"
     },
     "responsable": {
       "type": "boolean"
     },
-    "irresponsable": {
-      "type": "boolean"
+    "version": {
+      "type": "string"
     },
-    "fileData": {
+    "departamento": {
+      "type": "string",
+      "enum": [
+        "DEV",
+        "ING",
+        "BIM",
+        "ARCH",
+        "BOSS",
+        "Externo"
+      ]
+    },
+    "registro": {
       "type": "object",
       "properties": {
-        "id": {
+        "cambio": {
           "type": "string"
         },
-        "version": {
-          "type": "integer"
+        "afectaaotros": {
+          "type": "boolean"
         },
-        "departamento": {
-          "type": "string",
-          "enum": ["BIM", "DEV", "ING", "ARCH"]
+        "comentario": {
+          "type": "string"
+        },
+        "incidencia": {
+          "type": "string"
         }
-      },
-      "additionalProperties": true,
-      "required": ["id"]
-    },
-   
-    "estado": {
-      "type": "string",
-      "enum": ["Inbox", "OutBox", "Finiquitao", "Pa´quemar"]
-    },
-
-    "registro": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "Cambios": {
-            "type": "string"
-          },
-          "Comentarios": {
-            "type": "string"}
-        }}}
-  },
-  "additionalProperties": true,
-  "required": ["name", "fileData"]
+      }
+    }, "jefedeequipo": {
+      "type": "object",
+      "properties": {
+        "urgencia": {
+          "type": "boolean"
+        },
+        "otrosequipos": {
+          "type": "string",
+          "enum": [
+            "BIM",
+            "DEV",
+            "ING",
+            "ARCH",
+            "Other"
+          ]
+        },
+        "informar": {
+          "type": "string"
+        }
+      }
+    }
+  }
 }

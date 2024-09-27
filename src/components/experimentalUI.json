@@ -1,0 +1,173 @@
+
+
+
+/* {
+  "type": "VerticalLayout",
+  "elements": [
+    {
+      "type": "Control",
+      "scope": "#/properties/name"
+    },
+    {
+      "type": "HorizontalLayout",
+      "elements": [
+       
+      
+        {
+          "type": "Control",
+          "label": "Responsable",
+          "scope": "#/properties/responsable",
+          "rule": {
+            "effect": "SHOW",
+            "condition": {
+              "scope": "#/properties/irresponsable",
+              "schema": { "const": false }
+            }
+          }
+        },
+        {
+          "type": "Control",
+          "label": "¡Irresponsable! ¡Imprudente! ¡Inconsciente! ¡INSENSATOOO!",
+          "scope": "#/properties/irresponsable",
+          "rule": {
+            "effect": "HIDE",
+            "condition": {
+              "scope": "#/properties/responsable",
+              "schema": { "const": true }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "Control",
+      "scope": "#/properties/fileData"
+    },
+    {
+      "type": "Control",
+      "label": "Estado del  documento",
+      "scope": "#/properties/estado"
+    },
+    {
+      "type": "VerticalLayout",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/registro",
+          "options": {
+            "showSortButtons": true
+          }
+        }
+      ]
+    }
+  ]
+ 
+} */
+
+
+
+/*   SCHEMA Original
+{
+    "type": "Categorization",
+    "elements": [
+      {
+        "type": "Category",
+        "label": "categoryLabelKey",
+        "elements": [
+          { "type": "Control", "scope": "#/properties/emilio" },
+          {
+            "type": "VerticalLayout",
+            "elements": [
+              {
+                "type": "Control",
+                "scope": "#/properties/id"
+              },
+              {
+                "type": "Control",
+                "scope": "#/properties/version"
+              },
+              {
+                "type": "Control",
+                "scope": "#/properties/departamento"
+              }
+            ]
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/responsable"
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/irresponsable"
+          }
+        ]
+      },
+      {
+        "type": "Category",
+        "i18n": "registro",
+        "elements": [
+          {
+            "type": "HorizontalLayout",
+            "elements": [
+              {
+                "type": "Control",
+                "scope": "#/properties/registro/properties/cambio"
+              },
+              {
+                "type": "Control",
+                "scope": "#/properties/registro/properties/¿afectaAOtros?"
+              }
+            ]
+          },
+          {
+            "type": "HorizontalLayout",
+            "elements": [
+              {
+                "type": "Control",
+                "scope": "#/properties/address/properties/comentario"
+              }
+              
+            ]
+          }
+        ]    
+      },
+      {
+        "type": "Category",
+        "label": "Jefedeequipo",
+        "elements": [
+          {
+            "type": "Control",
+            "scope": "#/properties/burocracia/properties/urgencia"
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/burocracia/properties/informar"
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/burocracia/properties/otrosEquipos",
+            "rule": {
+              "effect": "SHOW",
+              "condition": {
+                "scope": "#/properties/burocracia/properties/informar",
+                "schema": {
+                  "const": "Other"
+                }
+              }
+            }
+          }
+        ],
+        "rule": {
+          "effect": "SHOW",
+          "condition": {
+            "scope": "#/properties/responsable",
+            "schema": {
+              "const": true
+            }
+          }
+        }
+      }
+    ]
+  }
+  
+   */
