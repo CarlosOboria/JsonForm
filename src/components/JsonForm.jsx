@@ -45,11 +45,6 @@ export const JsonFormsProb = () => {
       .catch((error) => {
         console.error("Error:", error);
       });
-    return (
-      <div>
-        <button>Hacer POST</button>
-      </div>
-    );
   };
   return (
     <>
@@ -70,14 +65,14 @@ export const JsonFormsProb = () => {
           variant="contained"
           sx={{ marginRight: 3 }}
         >
-          Salvameeeeh!!
+          Enviar
         </Button>
         <Button
           onClick={() => setData({})}
           color="secondary"
           variant="contained"
         >
-          Clear form data
+          Dejarlo limpito
         </Button>
       </div>
     </>

@@ -10,10 +10,6 @@
     "irresponsable": {
       "type": "boolean"
     },
-    "fecha": {
-      "type": "string",
-      "format": "date"
-    },
     "fileData": {
       "type": "object",
       "properties": {
@@ -24,11 +20,12 @@
           "type": "integer"
         },
         "departamento": {
-          "type": "string"
+          "type": "string",
+          "enum": ["BIM", "DEV", "ING", "ARCH"]
         }
       },
       "additionalProperties": true,
-      "required": ["name"]
+      "required": ["id"]
     },
    
     "estado": {

@@ -38,10 +38,6 @@
     },
     {
       "type": "Control",
-      "scope": "#/properties/fecha"
-    },
-    {
-      "type": "Control",
       "scope": "#/properties/fileData"
     },
     {
