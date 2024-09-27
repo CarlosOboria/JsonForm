@@ -5,10 +5,16 @@
       "type": "Category",
       "label": "Datos",
       "elements": [
-        { "type": "Control", "scope": "#/properties/emilio" },
+       
         {
           "type": "VerticalLayout",
           "elements": [
+            { "type": "Control", "scope": "#/properties/emilio" },
+        
+            {
+              "type": "Control",
+              "scope": "#/properties/departamento"
+            },
             {
               "type": "Control",
               "scope": "#/properties/id"
@@ -16,10 +22,6 @@
             {
               "type": "Control",
               "scope": "#/properties/version"
-            },
-            {
-              "type": "Control",
-              "scope": "#/properties/departamento"
             }
           ]
         }

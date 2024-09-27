@@ -10,10 +10,7 @@ import Button from "@mui/material/Button";
 import axios from "axios";
 
 const initialData = {
-  name: "Mr/Mrs Oboria",
-  responsable: false,
-  irresponsable: false,
-  fecha: new Date().toISOString().split("T")[0],
+  emilio: "Mr/Mrs Oboria@oboria.com",
 };
 
 export const JsonFormsProb = () => {
@@ -24,12 +21,12 @@ export const JsonFormsProb = () => {
     // #BlobRegion
     const dataBlob = new Blob([jsonData], { type: "application/json" });
     const url = URL.createObjectURL(dataBlob);
-    setData(url); // Guardar la URL generada
-    console.log(url);
+    
     window.open(url, "_blank");
     // #endRegion
     const urlPower =
       "https://prod-93.westeurope.logic.azure.com:443/workflows/82828cccadf346ef9f870a0cc40cca1f/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=AMDsphYZcS3quqkcVzaub3Y6hzJZylJumA4dfUHFVrA";
+      
 
       // Añadimos el header para que llegue en formato Json en Power Autoamte
     axios
@@ -39,8 +36,8 @@ export const JsonFormsProb = () => {
         },
       })
       .then((response) => {
-        setData(response.jsonData);
-        console.log(response.jsonData); // Ver la respuesta en consola
+        setData(response.data);
+        console.log(response.data); // Ver la respuesta en consola
       })
       .catch((error) => {
         console.error("Error:", error);

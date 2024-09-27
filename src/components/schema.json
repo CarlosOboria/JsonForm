@@ -4,12 +4,10 @@
     "emilio": {
       "type": "string",
       "placeHolder": "Indica tu email",
-      "minLength": 6,
       "description": "Please enter your email"
     },
     "id": {
       "type": "string",
-      "minLength": 3,
       "description": "Please enter ID´s file"
     },
     "responsable": {
