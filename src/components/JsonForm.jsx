@@ -1,6 +1,6 @@
 import schema from "./schema.json";
 import uischema from "./uischema.json";
-import { useState, useMemo } from "react";
+import { useState} from "react";
 import { JsonForms } from "@jsonforms/react";
 import {
   materialCells,
@@ -11,23 +11,25 @@ import axios from "axios";
 
 const initialData = {
   emilio: "Mr/Mrs Oboria@oboria.com",
+  responsable: false
+ 
 };
 
 export const JsonFormsProb = () => {
   const [data, setData] = useState(initialData);
-  const jsonData = useMemo(() => JSON.stringify(data, null, 2), [data]);
 
   const handleSubmit = () => {
-    // #BlobRegion
-    const dataBlob = new Blob([jsonData], { type: "application/json" });
-    const url = URL.createObjectURL(dataBlob);
     
-    window.open(url, "_blank");
+    const jsonData = JSON.stringify(data, null, 2);
+    console.log("Datos a enviar:", jsonData);
+    // #BlobRegion
+  /*   const dataBlob = new Blob([jsonData], { type: "application/json" });
+    const url = URL.createObjectURL(dataBlob);
+    window.open(url, "_blank"); */
     // #endRegion
     const urlPower =
       "https://prod-93.westeurope.logic.azure.com:443/workflows/82828cccadf346ef9f870a0cc40cca1f/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=AMDsphYZcS3quqkcVzaub3Y6hzJZylJumA4dfUHFVrA";
       
-
       // Añadimos el header para que llegue en formato Json en Power Autoamte
     axios
       .post(urlPower, jsonData, {
@@ -40,7 +42,7 @@ export const JsonFormsProb = () => {
         console.log(response.data); // Ver la respuesta en consola
       })
       .catch((error) => {
-        console.error("Error:", error);
+        console.error("Error enviando los datos a Power Automate:", error);
       });
   };
   return (

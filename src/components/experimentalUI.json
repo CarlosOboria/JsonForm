@@ -1,4 +1,38 @@
 
+//Con condicion que da error
+/* {
+      "type": "Category",
+      "label": "Jefe de equipo",
+      "i18n": "fuckingBoss",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/jefedeequipo/properties/urgencia"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/jefedeequipo/properties/otrosequipos"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/jefedeequipo/properties/informar"
+          
+        }
+      ],
+      "rule": {
+        "effect": "SHOW",
+        "condition": {
+          "scope": "#/properties/responsable",
+          "schema": {
+            "const": true
+          }
+        }
+      }
+    } */
+
+
+
+
 
 
 /* {

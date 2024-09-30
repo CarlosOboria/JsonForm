@@ -4,16 +4,19 @@
     {
       "type": "Category",
       "label": "Datos",
-      "elements": [
-       
+      "elements": [       
         {
           "type": "VerticalLayout",
           "elements": [
-            { "type": "Control", "scope": "#/properties/emilio" },
-        
+            { "type": "Control", "scope": "#/properties/emilio" 
+            }, 
             {
               "type": "Control",
               "scope": "#/properties/departamento"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/estado"
             },
             {
               "type": "Control",
@@ -74,15 +77,17 @@
                   }
                 }
               }
-            }
-          ]
-        }
-      ]
-    },
+            },
     {
-      "type": "Category",
+      "type": "Group",
       "label": "Jefe de equipo",
-      "i18n": "fuckingBoss",
+      "rule": {
+        "effect": "SHOW",
+        "condition": {
+          "scope": "#/properties/responsable", 
+          "schema": { "const": true } 
+        }
+      },
       "elements": [
         {
           "type": "Control",
@@ -90,23 +95,20 @@
         },
         {
           "type": "Control",
+          "label":"Informar a",
           "scope": "#/properties/jefedeequipo/properties/otrosequipos"
         },
         {
           "type": "Control",
+          "label": "incidencia",
           "scope": "#/properties/jefedeequipo/properties/informar"
           
         }
-      ],
-      "rule": {
-        "effect": "SHOW",
-        "condition": {
-          "scope": "#/properties/responsable",
-          "schema": {
-            "const": true
-          }
+      ]
+    }
+          ]
         }
-      }
+      ]
     }
   ]
 }
