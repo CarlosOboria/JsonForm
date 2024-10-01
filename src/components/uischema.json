@@ -91,16 +91,16 @@
       "elements": [
         {
           "type": "Control",
-          "scope": "#/properties/jefedeequipo/properties/urgencia"
+          "scope": "#/properties/jefedeequipo/properties/urgente"
         },
         {
           "type": "Control",
-          "label":"Informar a",
+          "label":"Informar a...",
           "scope": "#/properties/jefedeequipo/properties/otrosequipos"
         },
         {
           "type": "Control",
-          "label": "incidencia",
+          "label": "Informar de...",
           "scope": "#/properties/jefedeequipo/properties/informar"
           
         }

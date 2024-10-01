@@ -39,12 +39,13 @@
         "incidencia": {
           "type": "string"
         }
-      }
+      },
+      "required": ["cambio", "comentario"]
     },
     "jefedeequipo": {
       "type": "object",
       "properties": {
-        "urgencia": {
+        "urgente": {
           "type": "boolean"
         },
         "otrosequipos": {
