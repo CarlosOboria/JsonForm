@@ -12,7 +12,7 @@ import axios from "axios";
 const urlParams = new URLSearchParams(window.location.search);
 const email = urlParams.get('email');
 console.log('email es :', email)
-const mail = 'example@eso.com'
+const mail = email;
 const initialData = {
   emilio: mail ,
   responsable: false,
