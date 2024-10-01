@@ -11,10 +11,12 @@ import axios from "axios";
 
 const urlParams = new URLSearchParams(window.location.search);
 const email = urlParams.get('email');
-console.log('email es :', email)
-const mail = email;
+const idArchivo = urlParams.get('idArchivo');
+
+
 const initialData = {
-  emilio: mail ,
+  emilio: email ,
+  id: idArchivo,
   responsable: false,
   registro: {
     // Asegúrate de incluir los campos iniciales
