@@ -9,8 +9,12 @@ import {
 import Button from "@mui/material/Button";
 import axios from "axios";
 
+const urlParams = new URLSearchParams(window.location.search);
+const email = urlParams.get('email');
+console.log('email es :', email)
+const mail = 'example@eso.com'
 const initialData = {
-  emilio: "Mr/Mrs Oboria@oboria.com",
+  emilio: mail ,
   responsable: false,
   registro: {
     // Asegúrate de incluir los campos iniciales
