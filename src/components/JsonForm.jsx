@@ -10,16 +10,14 @@ import Button from "@mui/material/Button";
 import axios from "axios";
 
 const urlParams = new URLSearchParams(window.location.search);
-const email = urlParams.get('email');
-const idArchivo = urlParams.get('idArchivo');
-
+const email = urlParams.get("email");
+const idArchivo = urlParams.get("idArchivo");
 
 const initialData = {
-  emilio: email ,
+  emilio: email,
   id: idArchivo,
   responsable: false,
   registro: {
-    // Asegúrate de incluir los campos iniciales
     cambio: "",
     comentario: "",
   },
@@ -27,25 +25,18 @@ const initialData = {
 
 export const JsonFormsProb = () => {
   const [data, setData] = useState(initialData);
-  // #ValidRegion-chatgpt
   const [isValid, setIsValid] = useState(false); // Estado para habilitar o deshabilitar el botón
-
+  // Estado para controlar si el formulario ha sido enviado
+  const [isSubmitted, setIsSubmitted] = useState(false);
   // Función para manejar los cambios en el formulario
   const handleChange = ({ data }) => {
     setData(data);
-
     // Verifica si los campos "cambio" y "comentario" están completos
     const isCambioFilled = data?.registro?.cambio?.trim() !== "";
     const isComentarioFilled = data?.registro?.comentario?.trim() !== "";
-    /* 
-    console.log('Cambio lleno:', isCambioFilled);
-    console.log('Comentario lleno:', isComentarioFilled);
-    console.log('Es válido:', isValid);
-    */
     // Actualiza el estado de validez si ambos campos están llenos
     setIsValid(isCambioFilled && isComentarioFilled);
   };
-  //End ValidRegion-chatgpt
 
   const handleSubmit = () => {
     const jsonData = JSON.stringify(data, null, 2);
@@ -70,37 +61,45 @@ export const JsonFormsProb = () => {
       .catch((error) => {
         console.error("Error enviando los datos a Power Automate:", error);
       });
+    setIsSubmitted(true);
   };
   return (
     <>
-      <div>
-        <JsonForms
-          schema={schema}
-          uischema={uischema}
-          data={data || {}}
-          renderers={materialRenderers}
-          cells={materialCells}
-          onChange={handleChange} // Aquí usamos la función que valida los campos #ValidRegion
-        />
-      </div>
-      <div>
-        <Button
-          onClick={handleSubmit}
-          color="primary"
-          variant="contained"
-          sx={{ marginRight: 3 }}
-          disabled={!isValid} // Deshabilita el botón si los campos no están completos
-        >
-          Enviar
-        </Button>
-        <Button
-          onClick={() => setData({})}
-          color="secondary"
-          variant="contained"
-        >
-          Dejarlo limpito
-        </Button>
-      </div>
+      {!isSubmitted ? (
+        <div>
+          <JsonForms
+            schema={schema}
+            uischema={uischema}
+            data={data || {}}
+            renderers={materialRenderers}
+            cells={materialCells}
+            onChange={handleChange} // Aquí usamos la función que valida los campos #ValidRegion
+          />
+          <div>
+            <Button
+              onClick={handleSubmit}
+              color="primary"
+              variant="contained"
+              sx={{ marginRight: 3 }}
+              disabled={!isValid} // Deshabilita el botón si los campos no están completos
+            >
+              Enviar
+            </Button>
+            <Button
+              onClick={() => setData({})}
+              color="secondary"
+              variant="contained"
+            >
+              Dejarlo limpito
+            </Button>
+          </div>
+        </div>
+      ) : (
+        <div>
+          <h2 style={{ color: 'blue' }}>Formulario enviado</h2>
+          <h3 style={{ color: 'blue' }}>Graaaacias!</h3>
+        </div>
+      )}
     </>
   );
 };
