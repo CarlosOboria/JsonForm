@@ -1,6 +1,6 @@
 import schema from "./schema.json";
 import uischema from "./uischema.json";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { JsonForms } from "@jsonforms/react";
 import {
   materialCells,
@@ -63,6 +63,16 @@ export const JsonFormsProb = () => {
       });
     setIsSubmitted(true);
   };
+  // Redirigir después de que se envíe el formulario
+  useEffect(() => {
+    if (isSubmitted) {
+      const timer = setTimeout(() => {
+        window.close();
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isSubmitted]);
   return (
     <>
       {!isSubmitted ? (
@@ -73,7 +83,7 @@ export const JsonFormsProb = () => {
             data={data || {}}
             renderers={materialRenderers}
             cells={materialCells}
-            onChange={handleChange} // Aquí usamos la función que valida los campos #ValidRegion
+            onChange={handleChange}
           />
           <div>
             <Button
@@ -94,11 +104,13 @@ export const JsonFormsProb = () => {
             </Button>
           </div>
         </div>
-      ) : (
+      ) : ( 
         <div>
           <h2 style={{ color: 'blue' }}>Formulario enviado</h2>
           <h3 style={{ color: 'blue' }}>Graaaacias!</h3>
         </div>
+        
+        
       )}
     </>
   );
