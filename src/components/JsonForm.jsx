@@ -1,6 +1,6 @@
 import schema from "./schema.json";
 import uischema from "./uischema.json";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { JsonForms } from "@jsonforms/react";
 import {
   materialCells,
@@ -56,23 +56,19 @@ export const JsonFormsProb = () => {
         },
       })
       .then((response) => {
-        setData(response.data);
+        console.log("Datos enviados exitosamente:", response.data);
+        setIsSubmitted(true);
+      const timer = setTimeout(() => {
+        window.close();
+      }, 1000);
+      return () => clearTimeout(timer);
       })
       .catch((error) => {
         console.error("Error enviando los datos a Power Automate:", error);
       });
     setIsSubmitted(true);
   };
-  // Redirigir después de que se envíe el formulario
-  useEffect(() => {
-    if (isSubmitted) {
-      const timer = setTimeout(() => {
-        window.close();
-      }, 1000);
 
-      return () => clearTimeout(timer);
-    }
-  }, [isSubmitted]);
   return (
     <>
       {!isSubmitted ? (
