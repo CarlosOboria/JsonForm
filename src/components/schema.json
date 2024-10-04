@@ -10,6 +10,10 @@
       "type": "string",
       "description": "Please enter ID´s file"
     },
+    "rv": {
+      "type": "string",
+      "description": "Please enter RV´s file"
+    },
     "responsable": {
       "type": "boolean"
     },

@@ -12,10 +12,12 @@ import axios from "axios";
 const urlParams = new URLSearchParams(window.location.search);
 const email = urlParams.get("email");
 const idArchivo = urlParams.get("idArchivo");
+const RvArchivo = urlParams.get("RvArchivo");
 
 const initialData = {
   emilio: email,
   id: idArchivo,
+  rv: RvArchivo,
   responsable: false,
   registro: {
     cambio: "",
