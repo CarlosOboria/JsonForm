@@ -10,34 +10,23 @@ import { useEffect } from 'react';
 
   return <p>Welcome, {username}</p>;
 } */
+  const AZURE_FUNCTION_SCOPE = ["api://e137baf1-a1ab-438a-9e64-4d41b1ab3f52/.default"];
+  //const FLOW_SCOPE = ["https://service.flow.microsoft.com//.default"];
+  
 
-function App() {
-  const { instance } = useMsal();
-
-  useEffect(() => {
-    const login = async () => {
-      try {
-        await instance.loginPopup({
-          scopes: ["User.Read"]
-        });
-      } catch (error) {
-        console.error("Error durante el inicio de sesión: ", error);
-      }
-    };
-
-    login();
-  }, [instance]);
-
-  return (
-    <div>
-      <MsalAuthenticationTemplate interactionType={InteractionType.Popup}>
-      <p>Este contenido solo se mostrará si el usuario no está autenticado.</p>
-      <JsonFormsProb />
-      </MsalAuthenticationTemplate>
-    </div>
-  );
-}
-
+  function App() {
+    return (
+      <div>
+        <MsalAuthenticationTemplate 
+          interactionType={InteractionType.Redirect} 
+          authenticationRequest={{ scopes: AZURE_FUNCTION_SCOPE }}
+        >
+          <p>Este contenido solo se mostrará si el usuario no está autenticado.</p>
+          <JsonFormsProb />
+        </MsalAuthenticationTemplate>
+      </div>
+    );
+  }
 export default App
 
 /* 
